@@ -7,14 +7,17 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Education from './components/Education';
+import Experience from './components/Experience';
 import Contact from './components/Contact';
 import ProjectModal from './components/ProjectModal';
+import ResumeModal from './components/ResumeModal';
 import Toast from './components/Toast';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [resumeOpen, setResumeOpen] = useState(false);
   const [toasts, setToasts] = useState([]);
   const [activeSection, setActiveSection] = useState('hero');
   const [theme, setTheme] = useState(() => {
@@ -110,19 +113,29 @@ export default function App() {
   return (
     <>
       <CanvasBackground />
-      <Navbar activeSection={activeSection} theme={theme} onToggleTheme={toggleTheme} />
+      <Navbar
+        activeSection={activeSection}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        onOpenResume={() => setResumeOpen(true)}
+      />
       <main>
-        <Hero />
-        <About />
+        <Hero onOpenResume={() => setResumeOpen(true)} />
+        <About onOpenResume={() => setResumeOpen(true)} />
+        <Experience />
         <Skills />
         <Projects onSelectProject={setSelectedProject} />
         <Certifications />
         <Education />
         <Testimonials />
-        <Contact onShowToast={showToast} />
+        <Contact
+          onShowToast={showToast}
+          onOpenResume={() => setResumeOpen(true)}
+        />
       </main>
       <Footer />
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
       <Toast toasts={toasts} />
     </>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PROFILE_DATA } from '../data/portfolioData';
 
-export default function Navbar({ activeSection, theme, onToggleTheme }) {
+export default function Navbar({ activeSection, theme, onToggleTheme, onOpenResume }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -17,6 +17,7 @@ export default function Navbar({ activeSection, theme, onToggleTheme }) {
   const navItems = [
     { id: 'hero', label: 'Home' },
     { id: 'about', label: 'About' },
+    { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
     { id: 'certifications', label: 'Certifications' },
@@ -55,6 +56,27 @@ export default function Navbar({ activeSection, theme, onToggleTheme }) {
         </nav>
 
         <div className="nav-actions">
+          {/* Resume Modal Trigger */}
+          <button
+            type="button"
+            className="btn btn-secondary nav-resume-btn"
+            onClick={onOpenResume}
+            aria-label="View Resume"
+            style={{
+              padding: '0.4rem 0.85rem',
+              fontSize: '0.85rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              borderRadius: '9999px'
+            }}
+          >
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>Resume</span>
+          </button>
+
           {/* GitHub Quick Link */}
           <a
             href={PROFILE_DATA.github}
