@@ -1,0 +1,36 @@
+/* ==========================================================================
+   Main Stylesheet Orchestrator
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@import './variables.css';
+@import './base.css';
+@import './components/navbar.css';
+@import './components/hero.css';
+@import './components/cards.css';
+@import './components/timeline.css';
+@import './components/modal.css';
+@import './components/form.css';
+
+/* ==========================================================================
+   Tailwind / shadcn Theme Tokens
+   Maps existing CSS variables to Tailwind utilities
+   ========================================================================== */
+
+@theme {
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --color-muted: var(--bg-tertiary);
+  --color-muted-foreground: var(--text-secondary);
+  --color-border: var(--border-card);
+  --animate-marquee: marquee var(--duration) linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--gap))); }
+}
+
